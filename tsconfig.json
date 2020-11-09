@@ -14,7 +14,17 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@impactech/common/*": [
+        "projects/impact-common/*",
+        "projects/impact-common"
+      ],
+      "@impactech/common": [
+        "dist/impact-common/*",
+        "dist/impact-common"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
