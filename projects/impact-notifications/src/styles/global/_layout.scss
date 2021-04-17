@@ -1,0 +1,30 @@
+.layout {
+  display: block;
+  height: 100vh;
+
+  &--header {
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+  }
+
+  &--container {
+    top: 56px;
+    height: calc(100% - 56px);
+    z-index: -1;
+
+    @include mr {
+      top: 64px;
+       height: calc(100% - 64px);
+    }
+  }
+
+  &--sidebar {
+    width: 200px;
+  }
+
+ &--content {
+    padding: 22px;
+  }
+}

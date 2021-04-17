@@ -1,0 +1,18 @@
+<ng-container class="layout">
+  <!-- header -->
+  <app-root-header class="layout--header" [isOpen]="open" (openEvent)="open = !open"></app-root-header>
+
+  <mat-sidenav-container class="layout--container">
+    <!-- sidebar -->
+    <mat-sidenav #sidenav mode="side" [(opened)]="open" class="layout--sidebar">
+      <app-root-sidebar></app-root-sidebar>
+    </mat-sidenav>
+
+    <!-- content -->
+    <mat-sidenav-content class="layout--content">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+    
+  </mat-sidenav-container>
+
+</ng-container>

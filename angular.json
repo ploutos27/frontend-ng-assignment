@@ -28,7 +28,8 @@
               "projects/impact-notifications/src/assets"
             ],
             "styles": [
-              "projects/impact-notifications/src/styles.scss"
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "projects/impact-notifications/src/styles/styles.scss"
             ],
             "scripts": []
           },
@@ -92,6 +93,7 @@
               "projects/impact-notifications/src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "projects/impact-notifications/src/styles.scss"
             ],
             "scripts": []
