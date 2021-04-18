@@ -6,8 +6,14 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./modules').then((m) => m.DashboardModule),
-    // canActivate: [AuthorizedGuard],
-    // canActivateChild: [AuthorizedGuard],
+  },
+  {
+    path: 'inbox',
+    loadChildren: () => import('./modules').then((m) => m.InboxModule),
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./modules').then((m) => m.ProfileModule),
   },
 ];
 

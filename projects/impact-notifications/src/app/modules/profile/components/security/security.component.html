@@ -1,0 +1,6 @@
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="padding-spacer">
+    <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
+    <button [disabled]="form.invalid" type="submit" color="primary" mat-raised-button>
+      {{ 'profile.update_pwd' | translate }}
+    </button>
+  </form>

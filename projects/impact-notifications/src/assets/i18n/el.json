@@ -1,0 +1,19 @@
+{
+    "sidebar": {
+        "dashboard": "Πίνακας ελέγχου",
+        "inbox": "Εισερχόμενα",
+        "profile": "Προφίλ"
+    },
+    "header": {
+        "en_lang": "Αγγλικά",
+        "gr_lang": "Ελληνικά",
+        "application": "Εφαρμογή Chat"
+
+    },    
+    "profile": {
+        "tab_profile": "Προφίλ",
+        "tab_security": "Ασφάλεια",
+        "update_pwd": "Αλλαγή κωδικού πρόσβασης",
+        "update": "Ενημέρωση"
+    }
+}

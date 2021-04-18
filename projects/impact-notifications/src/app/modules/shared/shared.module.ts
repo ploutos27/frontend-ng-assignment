@@ -11,7 +11,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
-
 // Components
 import { HeaderComponent, LayoutComponent, SidebarComponent } from './components';
 
@@ -28,15 +27,13 @@ import { HeaderComponent, LayoutComponent, SidebarComponent } from './components
     MatListModule,
     MatSidenavModule,
     RouterModule,
-    TranslateModule
+    TranslateModule,
   ]
 })
-
 export class SharedModule {
-  public static forRoot(): ModuleWithProviders<SharedModule> {  // use module with providers for translations later
+  public static forRoot(): ModuleWithProviders<SharedModule> {
     return {
-      ngModule: SharedModule,
-      providers: []
+      ngModule: SharedModule
     };
   }
 }

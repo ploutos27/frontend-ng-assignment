@@ -1,6 +1,11 @@
 @import "./global/variables";
 @import "./global/fonts";
+@import "./global/flags";
 @import "./global/body";
 @import "./global/mixins";
+@import "./global/sidebar";
 @import "./global/header";
-@import "./global//layout";
+@import "./global/layout";
+@import "./global/helpers";
+@import "./global//tabs";
+@import "./formly/formly";

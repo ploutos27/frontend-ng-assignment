@@ -1,0 +1,9 @@
+.flag-icon {
+    display: block;
+    margin: 0 auto;
+    width: 24px;
+    height: 100%;
+
+    &-en { background: url('https://lipis.github.io/flag-icon-css/flags/4x3/gb.svg') no-repeat center; }
+    &-el { background: url('https://lipis.github.io/flag-icon-css/flags/4x3/gr.svg') no-repeat center; }
+}

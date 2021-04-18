@@ -1,5 +1,5 @@
  <mat-nav-list>
-  <mat-list-item *ngFor="let m of menu">
-     <a matLine [routerLink]="[m.router]" [routerLinkActive]="'is-active'" [routerLinkActiveOptions]="{exact: true}">{{ m.label }}</a>
-  </mat-list-item>
-</mat-nav-list>
+   <mat-list-item *ngFor="let m of menu" [routerLinkActive]="'is-active'" routerLink="{{m.router}}">
+     {{ 'sidebar.' + m.label | translate }}
+   </mat-list-item>
+ </mat-nav-list>

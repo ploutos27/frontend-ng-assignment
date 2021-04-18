@@ -1,0 +1,18 @@
+{
+    "sidebar": {
+        "dashboard": "Dashboard",
+        "inbox": "Inbox",
+        "profile": "Profile"
+    },
+    "header": {
+        "en_lang": "English",
+        "gr_lang": "Greek",
+        "application": "Chat App"
+    },
+    "profile": {
+        "tab_profile": "Profile",
+        "tab_security": "Security",
+        "update_pwd": "Change Password",
+        "update": "Update"
+    }
+}

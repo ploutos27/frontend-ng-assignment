@@ -16,7 +16,7 @@ export class SidebarComponent {
       label: 'inbox',
       router: '/inbox',
     },
-     {
+    {
       label: 'profile',
       router: '/profile',
     },
