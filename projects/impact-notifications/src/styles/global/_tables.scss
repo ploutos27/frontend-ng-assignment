@@ -1,0 +1,44 @@
+mat-paginator {
+  border-bottom-left-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
+}
+table {
+  width: 100%;
+}
+
+td.mat-column-star {
+  width: 20px;
+  padding-right: 8px;
+}
+
+th.mat-column-position,
+td.mat-column-position {
+  padding-left: 8px;
+}
+
+.table {
+  &__item {
+    border: 1px solid #eee;
+    border-bottom: 0;
+
+    strong {
+      display: inline-block;
+      width: 110px;
+      background: #eee;
+      padding: .3rem;
+    }
+    span {
+      padding: .3rem;
+    }
+      &:first-child {
+        border-top-left-radius: .3rem;
+        border-top-right-radius: .3rem;
+      }
+      &:last-child {
+        border-bottom: 1px solid #eee;
+        border-bottom-right-radius: .3rem;
+        border-bottom-left-radius: .3rem;
+      }
+  }
+}
+

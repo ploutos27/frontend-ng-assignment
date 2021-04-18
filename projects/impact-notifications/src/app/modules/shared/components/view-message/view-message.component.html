@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>{{data.subject}}</h1>
+<div mat-dialog-content>
+    <div class="table">
+        <div class="table__item">
+            <strong>{{ 'dialog.from' | translate }}</strong>
+            <span>{{data.from}}</span>
+        </div>
+        <div class="table__item">
+            <strong>{{ 'dialog.to' | translate }}</strong>
+            <span>{{data.to}}</span>
+        </div>
+        <div class="table__item">
+            <strong>{{ 'dialog.date' | translate }}</strong>
+            <span>{{data.date}}</span>
+        </div>
+        <div class="table__item">
+            <strong>{{ 'dialog.message' | translate }}</strong>
+            <span>{{data.message}}</span>
+        </div>
+    </div>
+</div>
+<div class="spacer"></div>
+<div mat-dialog-actions>
+  <button mat-flat-button color="primary" (click)="dialogRef.close(true)">{{ 'dialog.close' | translate }}</button>
+</div>

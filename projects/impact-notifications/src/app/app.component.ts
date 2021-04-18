@@ -12,7 +12,6 @@ export class AppComponent {
     } else {
       localStorage.setItem('language', 'en');
       translate.setDefaultLang('en');
-
     }
   }
 }

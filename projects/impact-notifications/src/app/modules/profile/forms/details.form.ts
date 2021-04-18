@@ -9,7 +9,8 @@ export const fields: FormlyFieldConfig[] = [
         type: 'input',
         key: 'fname',
         templateOptions: {
-          label: 'First Name',
+          translate: true,
+          label: 'form.profile.fname',
         },
       },
       {
@@ -17,7 +18,8 @@ export const fields: FormlyFieldConfig[] = [
         type: 'input',
         key: 'lname',
         templateOptions: {
-          label: 'Last Name',
+          translate: true,
+          label: 'form.profile.lname',
         },
       },
     ],
@@ -30,7 +32,8 @@ export const fields: FormlyFieldConfig[] = [
         type: 'input',
         key: 'email',
         templateOptions: {
-          label: 'Email',
+          translate: true,
+          label: 'form.profile.email',
           required: true,
         },
       },
@@ -39,7 +42,8 @@ export const fields: FormlyFieldConfig[] = [
         type: 'input',
         key: 'phone',
         templateOptions: {
-          label: 'Phone',
+          translate: true,
+          label: 'form.profile.phone',
           type: 'number',
         },
       },
@@ -53,7 +57,8 @@ export const fields: FormlyFieldConfig[] = [
         type: 'input',
         key: 'street',
         templateOptions: {
-          label: 'Street',
+          translate: true,
+          label: 'form.profile.street',
         },
       },
       {
@@ -61,7 +66,8 @@ export const fields: FormlyFieldConfig[] = [
         type: 'input',
         key: 'city',
         templateOptions: {
-          label: 'City',
+          translate: true,
+          label: 'form.profile.city',
         },
       },
       {
@@ -70,7 +76,8 @@ export const fields: FormlyFieldConfig[] = [
         key: 'zip',
         templateOptions: {
           type: 'number',
-          label: 'Zip',
+          translate: true,
+          label: 'form.profile.zip',
           max: 99999,
           min: 0,
         },
@@ -86,7 +93,8 @@ export const fields: FormlyFieldConfig[] = [
         key: 'country',
         templateOptions: {
           type: 'text',
-          label: 'Country',
+          translate: true,
+          label: 'form.profile.country',
         },
       },
     ],

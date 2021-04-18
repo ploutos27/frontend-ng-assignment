@@ -10,10 +10,9 @@ export const fields: FormlyFieldConfig[] = [
         key: 'currentPassword',
         templateOptions: {
           type: 'password',
-          label: 'Password',
-          placeholder: 'Must be at least 3 characters',
+          translate: true,
+          label: 'form.security.currentPassword',
           required: true,
-          minLength: 3,
         },
       },
     ],
@@ -32,10 +31,9 @@ export const fields: FormlyFieldConfig[] = [
         key: 'password',
         templateOptions: {
           type: 'password',
-          label: 'Password',
-          placeholder: 'Must be at least 3 characters',
+          translate: true,
+          label: 'form.security.newPassword',
           required: true,
-          minLength: 3,
         },
       },
       {
@@ -44,8 +42,8 @@ export const fields: FormlyFieldConfig[] = [
         key: 'passwordConfirm',
         templateOptions: {
           type: 'password',
-          label: 'Confirm Password',
-          placeholder: 'Please re-enter your password',
+          translate: true,
+          label: 'form.security.confirmPassword',
           required: true,
         },
       },

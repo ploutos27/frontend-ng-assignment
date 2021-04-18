@@ -14,5 +14,50 @@
         "tab_security": "Security",
         "update_pwd": "Change Password",
         "update": "Update"
+    },
+    "inbox": {
+        "inbox": "Inbox",
+        "sent": "Sent",
+        "from": "From",
+        "subject": "Subject",
+        "date": "Date",
+        "compose": "Compose"
+    },
+    "dialog": {
+        "title_delete": "Confirm Deletion",
+        "content_delete": "Are you sure you want to delete the following data?",
+        "yes": "Yes",
+        "no": "No",
+        "title_message": "Message From:",
+        "from": "From:",
+        "to": "To:",
+        "date": "Date:",
+        "message": "Message:",
+        "reply": "Replay",
+        "close": "Close",
+        "title_sent": "Create New Message",
+        "cancel":"Cancel",
+        "sent": "Send"
+    },
+    "form": {
+        "profile": {
+            "fname": "First Name",
+            "lname": "Last Name",
+            "email": "Email",
+            "phone": "Phone",
+            "street": "Street",
+            "city": "City",
+            "zip": "Zip",
+            "country": "Country"
+        },
+        "security": {
+            "currentPassword": "Current Password",
+            "newPassword": "New Password",
+            "confirmPassword": "Confirm Password"
+        },
+        "validation": {
+            "required": "This field is required",
+            "fieldMatch": "Password is not match"
+        }
     }
 }

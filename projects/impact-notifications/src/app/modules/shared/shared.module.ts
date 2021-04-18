@@ -11,29 +11,46 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
+
 // Components
-import { HeaderComponent, LayoutComponent, SidebarComponent } from './components';
+import { HeaderComponent, LayoutComponent, SidebarComponent, ConfirmationDialog, ViewMessageDialog, SentMessageDialog } from './components';
+import { FormlyMaterialModule } from '@ngx-formly/material';
+import { FormlyModule } from '@ngx-formly/core';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
-  declarations: [HeaderComponent, LayoutComponent, SidebarComponent],
+  declarations: [
+    HeaderComponent,
+    LayoutComponent,
+    SidebarComponent,
+    ConfirmationDialog,
+    ViewMessageDialog,
+    SentMessageDialog
+  ],
   imports: [
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     MatMenuModule,
     MatToolbarModule,
+    MatDialogModule,
     MatIconModule,
     MatButtonModule,
     MatListModule,
     MatSidenavModule,
     RouterModule,
+    ReactiveFormsModule,
+    FormlyModule.forRoot(),
+    FormlyMaterialModule,
     TranslateModule,
-  ]
+  ],
 })
 export class SharedModule {
   public static forRoot(): ModuleWithProviders<SharedModule> {
     return {
-      ngModule: SharedModule
+      ngModule: SharedModule,
     };
   }
 }

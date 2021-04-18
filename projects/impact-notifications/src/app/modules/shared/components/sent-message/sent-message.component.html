@@ -1,0 +1,14 @@
+  <h1 mat-dialog-title>{{ 'dialog.title_sent' | translate }}</h1>
+  <div mat-dialog-content>
+      <form [formGroup]="form" class="padding-spacer">
+        <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
+      </form>
+  </div>
+  <div class="spacer"></div>
+  <div mat-dialog-actions>
+    <button mat-flat-button color="primary" (click)="dialogRef.close(false)">{{ 'dialog.cancel' | translate }}</button>
+    <button [disabled]="form.invalid" mat-flat-button color="warn"
+      (click)="dialogRef.close(model)">{{ 'dialog.sent' | translate }}</button>
+  </div>
+
+

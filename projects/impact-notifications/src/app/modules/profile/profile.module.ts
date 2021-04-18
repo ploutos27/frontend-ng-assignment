@@ -19,8 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { fieldMatchValidator } from './functions/field-match-validator';
-import { TranslateModule } from '@ngx-translate/core';
 import { ProfileService } from './services/profile.service';
+import { TranslationModule } from '../translation/translation.module';
 
 const routes: Routes = [
   {
@@ -47,15 +47,13 @@ const appearance: MatFormFieldDefaultOptions = {
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    TranslationModule.forRoot(),
     ReactiveFormsModule,
-    TranslateModule,
     FormlyModule.forRoot({
-      validators: [
-        {
+      validators: [{
           name: 'fieldMatch',
           validation: fieldMatchValidator,
-        },
-      ],
+        }],
     }),
     FormlyMaterialModule,
     RouterModule.forChild(routes),

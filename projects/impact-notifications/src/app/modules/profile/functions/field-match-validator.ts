@@ -1,5 +1,5 @@
 import { AbstractControl } from "@angular/forms";
-import { TranslateService } from "@ngx-translate/core";
+
 
 export function fieldMatchValidator(control: AbstractControl) {
   const { password, passwordConfirm } = control.value;
@@ -15,7 +15,7 @@ export function fieldMatchValidator(control: AbstractControl) {
 
   return {
     fieldMatch: {
-      message: 'permissions.name | translate',
+      label: 'form.validation.fieldMatch'
     },
   };
 }

@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>{{ 'dialog.title_delete' | translate }}</h1>
+<div mat-dialog-content>
+  {{ 'dialog.content_delete' | translate }}
+</div>
+<div class="spacer"></div>
+<div mat-dialog-actions>
+  <button mat-flat-button color="primary" (click)="dialogRef.close(false)">{{ 'dialog.no' | translate }}</button>
+  <button mat-flat-button color="warn" (click)="dialogRef.close(true)">{{ 'dialog.yes' | translate }}</button>
+</div>

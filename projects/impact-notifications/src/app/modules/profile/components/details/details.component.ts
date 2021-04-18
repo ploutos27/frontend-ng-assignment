@@ -12,7 +12,9 @@ export class DetailsComponent {
   options: FormlyFormOptions = {};
   model = {};
   fields = fields;
-
+ constructor() {
+  
+ }
   onSubmit() {
     if (this.form.valid) {
       console.log(this.model);
