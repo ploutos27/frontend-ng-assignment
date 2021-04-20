@@ -4,3 +4,23 @@
       color: #3f51b5;
   }
 }
+
+app-root-sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.loginAs {
+    font-size: 0.8rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #e0e0e0;
+    background: #3f51b5;
+    color: #fff;
+  span {
+    margin-left: .3rem;
+  }
+}

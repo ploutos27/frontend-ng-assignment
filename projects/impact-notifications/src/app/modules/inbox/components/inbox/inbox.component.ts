@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { IInbox } from '../../interfaces/inbox.interface';
 import { ConfirmationDialog, ViewMessageDialog } from '../../../shared/components';
+import { ActivatedRoute } from '@angular/router';
 
 const ELEMENT_DATA: IInbox[] = [{
   from: 'Ploutarchos',
@@ -16,12 +17,17 @@ const ELEMENT_DATA: IInbox[] = [{
   selector: 'root-inbox-inbox',
   templateUrl: './inbox.component.html',
 })
-
 export class InboxComponent implements AfterViewInit {
-  constructor(public dialog: MatDialog) {}
+  get data() {
+    return this.route.snapshot.data;
+  }
+  constructor(
+    private readonly route: ActivatedRoute,
+    public dialog: MatDialog
+  ) {}
 
   displayedColumns: string[] = ['from', 'subject', 'date', 'star'];
-  dataSource = new MatTableDataSource<IInbox>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<IInbox>(this.data.inbox);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   ngAfterViewInit() {

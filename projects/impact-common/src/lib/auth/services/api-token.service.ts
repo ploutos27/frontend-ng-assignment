@@ -37,6 +37,5 @@ export class ApiTokenService {
 
   clean() {
     localStorage.removeItem(tokenKey);
-    
   }
 }

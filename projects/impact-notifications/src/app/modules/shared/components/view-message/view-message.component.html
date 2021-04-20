@@ -5,13 +5,13 @@
             <strong>{{ 'dialog.from' | translate }}</strong>
             <span>{{data.from}}</span>
         </div>
-        <div class="table__item">
+        <div class="table__item" *ngIf="data.to">
             <strong>{{ 'dialog.to' | translate }}</strong>
             <span>{{data.to}}</span>
         </div>
         <div class="table__item">
             <strong>{{ 'dialog.date' | translate }}</strong>
-            <span>{{data.date}}</span>
+            <span>{{data.date | date: 'medium' }}</span>
         </div>
         <div class="table__item">
             <strong>{{ 'dialog.message' | translate }}</strong>

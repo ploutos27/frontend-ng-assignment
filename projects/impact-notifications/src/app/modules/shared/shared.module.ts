@@ -20,6 +20,7 @@ ConfirmationDialog, ViewMessageDialog, SentMessageDialog } from './components';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { createTranslateLoader, TranslationModule } from '@impactech/common/src/public-api';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { SharedService } from './services/shared.service';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,7 @@ export class SharedModule {
   public static forRoot(): ModuleWithProviders<SharedModule> {
     return {
       ngModule: SharedModule,
-      providers: [],
+      providers: [SharedService],
     };
   }
 }

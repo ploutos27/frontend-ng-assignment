@@ -1,13 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IInbox } from '../interfaces/inbox.interface';
+import { of } from 'rxjs';
 
 @Injectable()
 export class InboxService {
   constructor(private readonly http: HttpClient) {}
 
+  me() {
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    return user;
+  }
+
   inbox() {
-    return this.http.get<IInbox>('/api/v1/inbox/incoming');
+    const me = JSON.parse(localStorage.getItem('currentUser')); // we can use store here
+    return this.http.get<IInbox>('/notifications', {
+      params: {
+        email: me.userDetails.email,
+      },
+    });
   }
 
   sent() {
@@ -15,7 +26,7 @@ export class InboxService {
   }
 
   create(message: IInbox) {
-    return this.http.post<IInbox>('/api/v1/inbox/create', message);
+    return this.http.post('/sendNotification', message);
   }
   
   delete(id: string) {

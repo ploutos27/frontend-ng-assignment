@@ -80,12 +80,18 @@
     "messages": {
         "errors": {
             "title": "Error.",
-            "user_exist": "Email Already Exists",
-            "login": "Email or Password is not match"
+            "user_exist": "Email already exists.",
+            "login": "Email or password is not match.",
+            "messageNotSend": "Your message is not delivered.",
+            "userNotUpdated": "Your profile has not been updated.",
+            "userPwdNotChange": "Your password has not been changed."
         },
         "success": {
             "title": "Success.",
-            "user_register": "User Registered Successfully"
+            "user_register": "User registered successfully.",
+            "messageSend":"Your message successfully sent.",
+            "userUpdated": "Your profile updated successfully.",
+            "userPwdChange": "Your password has been changed successfully."
         }
     }
 }
