@@ -2,18 +2,18 @@ import { HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 export default {
     GET: {
-        'https://localhost:42000/notifications': {
+        '/notifications': {
             handler: getNotifications
         }
     },
     POST: {
-        'https://localhost:42000/login': {
+        '/login': {
             handler: login
         },
-        'https://localhost:42000/register': {
+        '/register': {
             handler: register
         },
-        'https://localhost:42000/sendNotification': {
+        '/sendNotification': {
             handler: sendNotifications
         }
     }
@@ -72,13 +72,13 @@ function register(body) {
     let registeredUseres = localStorage.getItem('registered-users')
     if (registeredUseres != null) {
         let users = JSON.parse(registeredUseres);
-        if (users.findIndex(x => x.username === body.username) === -1) {
+        if (users.findIndex(x => x.email === body.email) === -1) {
             users.push(body);
             localStorage.setItem('registered-users', JSON.stringify(users));
             return of(new HttpResponse({
                 status: 200, body:
                 {
-                    staus: 'SUCCESS',
+                    status: 'SUCCESS',
                     message: 'User Registered Successfully'
                 }
             }));
@@ -86,7 +86,7 @@ function register(body) {
             return of(new HttpResponse({
                 status: 200, body:
                 {
-                    staus: 'FAILED',
+                    status: 'FAILED',
                     message: 'Username Already Exists'
                 }
             }));
@@ -96,7 +96,7 @@ function register(body) {
         return of(new HttpResponse({
             status: 200, body:
             {
-                staus: 'SUCCESS',
+                status: 'SUCCESS',
                 message: 'User Registered Successfully'
             }
         }));
@@ -108,7 +108,7 @@ function login(body) {
     let userDetails: any = {};
     if (localStorage.getItem('registered-users') != null) {
         let users = JSON.parse(localStorage.getItem('registered-users'));
-        let index = users.findIndex(x => x.username === body.username && x.password === body.password);
+        let index = users.findIndex(x => x.email === body.email && x.password === body.password);
         if (index > -1) {
             isAuthenticated = true;
             userDetails = users[index];

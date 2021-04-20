@@ -1,0 +1,13 @@
+ <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ 'form.auth.login' | translate }}</mat-card-title>
+    </mat-card-header>
+   <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
+      <button type="submit" color="primary" mat-stroked-button
+        routerLink="/auth/registration">{{ 'form.auth.register' | translate }}</button>
+      <button [disabled]="form.invalid" type="submit" color="primary" mat-flat-button>{{ 'form.auth.login' | translate }}</button>
+    </form>
+   </mat-card-content>
+ </mat-card>

@@ -1,0 +1,10 @@
+  <button mat-mini-fab [matMenuTriggerFor]="menu" class="flag {{currentLanguage}}"></button>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="useLanguage('en')">
+      {{ 'header.en_lang' | translate }}
+    </button>
+    <button mat-menu-item (click)="useLanguage('el')">
+      {{ 'header.gr_lang' | translate }}
+    </button>
+  </mat-menu>

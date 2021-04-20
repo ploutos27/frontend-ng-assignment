@@ -7,7 +7,7 @@
   <button mat-icon-button [matMenuTriggerFor]="menu">
     <span class="flag-icon flag-icon-{{currentLanguage}} flag-icon-squared"></span>
   </button>
-  <button mat-icon-button>
+  <button mat-icon-button (click)="logout()">
     <mat-icon>logout</mat-icon>
   </button>
 </mat-toolbar>

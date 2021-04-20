@@ -7,6 +7,7 @@ import { IInbox } from '../../interfaces/inbox.interface';
   selector: 'root-inbox-overview',
   templateUrl: './overview.component.html',
 })
+
 export class OverviewComponent implements OnInit {
   constructor(public dialog: MatDialog) {}
   ngOnInit(): void {}

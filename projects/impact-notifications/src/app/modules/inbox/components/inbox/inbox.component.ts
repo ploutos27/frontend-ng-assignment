@@ -16,6 +16,7 @@ const ELEMENT_DATA: IInbox[] = [{
   selector: 'root-inbox-inbox',
   templateUrl: './inbox.component.html',
 })
+
 export class InboxComponent implements AfterViewInit {
   constructor(public dialog: MatDialog) {}
 

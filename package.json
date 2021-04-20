@@ -11,7 +11,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~9.1.1",
+    "@angular/animations": "^9.1.13",
     "@angular/cdk": "^9.2.4",
     "@angular/common": "~9.1.1",
     "@angular/compiler": "~9.1.1",
@@ -27,7 +27,10 @@
     "@ngx-formly/material": "^5.0.0",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
+    "@ngxs/store": "^3.7.1",
     "flag-icon-css": "^3.5.0",
+    "moment": "^2.29.1",
+    "ngx-toastr": "^13.2.1",
     "rxjs": "^6.5.5",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

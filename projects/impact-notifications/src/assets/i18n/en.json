@@ -55,9 +55,37 @@
             "newPassword": "New Password",
             "confirmPassword": "Confirm Password"
         },
+        "inbox": {
+            "sendTo": "To",
+            "subject": "Subject",
+            "message": "Message"
+        },
         "validation": {
             "required": "This field is required",
             "fieldMatch": "Password is not match"
+        },
+        "auth": {
+            "email": "Email",
+            "password": "Password",
+            "login": "Login",
+            "register": "Register"
+        },
+        "errors": {
+            "title": "Error.",
+            "auth": {
+                "error": "Email or Password dose not match!"
+            }
+        }
+    },
+    "messages": {
+        "errors": {
+            "title": "Error.",
+            "user_exist": "Email Already Exists",
+            "login": "Email or Password is not match"
+        },
+        "success": {
+            "title": "Success.",
+            "user_register": "User Registered Successfully"
         }
     }
 }

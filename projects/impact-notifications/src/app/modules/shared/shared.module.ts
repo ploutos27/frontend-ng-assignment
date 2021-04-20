@@ -1,9 +1,11 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormlyMaterialModule } from '@ngx-formly/material';
+import { FormlyModule } from '@ngx-formly/core';
+import { ReactiveFormsModule } from '@angular/forms';
 // Material
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,13 +14,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
-
 // Components
-import { HeaderComponent, LayoutComponent, SidebarComponent, ConfirmationDialog, ViewMessageDialog, SentMessageDialog } from './components';
-import { FormlyMaterialModule } from '@ngx-formly/material';
-import { FormlyModule } from '@ngx-formly/core';
-import { ReactiveFormsModule } from '@angular/forms';
-
+import { HeaderComponent, LayoutComponent, SidebarComponent,
+ConfirmationDialog, ViewMessageDialog, SentMessageDialog } from './components';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { createTranslateLoader, TranslationModule } from '@impactech/common/src/public-api';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,11 +28,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     SidebarComponent,
     ConfirmationDialog,
     ViewMessageDialog,
-    SentMessageDialog
+    SentMessageDialog,
   ],
   imports: [
     CommonModule,
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatMenuModule,
     MatToolbarModule,
@@ -41,16 +43,25 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatListModule,
     MatSidenavModule,
     RouterModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient],
+      },
+    }),
+    TranslationModule,
     ReactiveFormsModule,
     FormlyModule.forRoot(),
     FormlyMaterialModule,
-    TranslateModule,
   ],
 })
+
 export class SharedModule {
   public static forRoot(): ModuleWithProviders<SharedModule> {
     return {
       ngModule: SharedModule,
+      providers: [],
     };
   }
 }

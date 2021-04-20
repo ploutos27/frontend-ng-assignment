@@ -5,9 +5,7 @@ import { IProfile, IPassword } from '../interfaces/profile.interface';
 @Injectable()
 export class ProfileService {
   constructor(private readonly http: HttpClient) {}
-  get() {
-    return this.http.get<IProfile>('/api/v1/security/me');
-  }
+
   update(data: IProfile) {
     return this.http.post<IProfile>('/api/v1/security/profile', data);
   }

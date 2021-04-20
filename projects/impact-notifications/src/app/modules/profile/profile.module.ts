@@ -20,7 +20,8 @@ import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { fieldMatchValidator } from './functions/field-match-validator';
 import { ProfileService } from './services/profile.service';
-import { TranslationModule } from '../translation/translation.module';
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslationModule } from '@impactech/common/src/public-api';
 
 const routes: Routes = [
   {
@@ -47,13 +48,16 @@ const appearance: MatFormFieldDefaultOptions = {
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    TranslationModule.forRoot(),
+    TranslateModule,
+    TranslationModule,
     ReactiveFormsModule,
     FormlyModule.forRoot({
-      validators: [{
+      validators: [
+        {
           name: 'fieldMatch',
           validation: fieldMatchValidator,
-        }],
+        },
+      ],
     }),
     FormlyMaterialModule,
     RouterModule.forChild(routes),

@@ -5,9 +5,12 @@ import { TranslateService } from '@ngx-translate/core';
   selector: 'app-root-header',
   templateUrl: './header.component.html',
 })
+
 export class HeaderComponent {
   currentLanguage: string;
-  constructor(private readonly translate: TranslateService) {
+  constructor(
+    private readonly translate: TranslateService,
+  ) {
     this.currentLanguage = this.translate.getDefaultLang();
   }
 
@@ -18,6 +21,9 @@ export class HeaderComponent {
     this.openEvent.emit((this.isOpen = !this.isOpen));
   }
 
+  logout() {
+
+  }
   // in production w'll dynamic translate using end-points
   useLanguage(language: string): void {
     this.translate.use(language);
