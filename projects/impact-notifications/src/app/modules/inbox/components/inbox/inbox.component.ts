@@ -1,46 +1,47 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { IInbox } from '../../interfaces/inbox.interface';
 import { ConfirmationDialog, ViewMessageDialog } from '../../../shared/components';
 import { ActivatedRoute } from '@angular/router';
-
-const ELEMENT_DATA: IInbox[] = [{
-  from: 'Ploutarchos',
-  to: 'Andreas',
-  subject: 'Welcome message',
-  message: 'Hi there'
-}];
+import { InboxService } from '../../services/inbox.service';
+import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
+import { IUser } from '../../../shared/interfaces/user.interface';
 
 @Component({
   selector: 'root-inbox-inbox',
   templateUrl: './inbox.component.html',
 })
-export class InboxComponent implements AfterViewInit {
-  get data() {
-    return this.route.snapshot.data;
+export class InboxComponent implements OnInit {
+  
+  get user(): IUser {
+    return this.route.snapshot.data.user;
   }
-  constructor(
-    private readonly route: ActivatedRoute,
-    public dialog: MatDialog
-  ) {}
 
   displayedColumns: string[] = ['from', 'subject', 'date', 'star'];
-  dataSource = new MatTableDataSource<IInbox>(this.data.inbox);
+  dataSource$: Observable<IInbox[]>;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+  constructor(
+    private readonly route: ActivatedRoute,
+    public dialog: MatDialog,
+    private readonly toastr: ToastrService,
+    private readonly translate: TranslateService,
+    private readonly service: InboxService
+  ) {}
+
+  ngOnInit(): void {
+    this.refresh();
+  }
+
+  refresh() {
+    this.dataSource$ = this.service.inbox(this.user.userDetails.email);
   }
 
   viewMessage(element: IInbox) {
     const dialogRef = this.dialog.open(ViewMessageDialog, {
       width: '600px',
       data: element,
-    });
-    dialogRef.afterClosed().subscribe((x) => {
-      if (x !== undefined && x === true) this.markAsRead(element);
     });
   }
 
@@ -53,9 +54,25 @@ export class InboxComponent implements AfterViewInit {
     });
   }
 
-  private messageDeletion(messageToDelete: IInbox) {}
-
-  private markAsRead(element: IInbox) {}
+  private messageDeletion(messageToDelete: IInbox) {
+    this.service.delete(messageToDelete, this.user.userDetails.email).subscribe(
+      () => {
+        this.toastr.success(
+          this.translate.instant('messages.success.messageDelete'),
+          this.translate.instant('messages.success.title'),
+          { timeOut: 4000 }
+        );
+        this.refresh();
+      },
+      () => {
+        this.toastr.error(
+          this.translate.instant('messages.errors.messageNotDelete'),
+          this.translate.instant('messages.errors.title'),
+          { timeOut: 4000 }
+        );
+      }
+    );
+  }
 }
 
 

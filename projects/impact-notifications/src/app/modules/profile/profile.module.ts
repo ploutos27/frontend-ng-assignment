@@ -22,21 +22,15 @@ import { fieldMatchValidator } from './functions/field-match-validator';
 import { ProfileService } from './services/profile.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslationModule } from '@impactech/common/src/public-api';
-import { ProfileResolverService } from './services/profile.resolver';
 
 const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    children: [
-      {
+    children: [{
         path: '',
         component: OverviewComponent,
-        resolve: {
-          user: ProfileResolverService,
-        },
-      },
-    ],
+      }],
   },
 ];
 
@@ -68,7 +62,6 @@ const appearance: MatFormFieldDefaultOptions = {
   ],
   providers: [
     ProfileService,
-    ProfileResolverService,
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: appearance,

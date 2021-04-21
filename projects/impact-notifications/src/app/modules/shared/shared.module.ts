@@ -21,6 +21,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { createTranslateLoader, TranslationModule } from '@impactech/common/src/public-api';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SharedService } from './services/shared.service';
+import { SharedResolverService } from './services/shared.resolver';
 
 @NgModule({
   declarations: [
@@ -57,12 +58,11 @@ import { SharedService } from './services/shared.service';
     FormlyMaterialModule,
   ],
 })
-
 export class SharedModule {
   public static forRoot(): ModuleWithProviders<SharedModule> {
     return {
       ngModule: SharedModule,
-      providers: [SharedService],
+      providers: [SharedService, SharedResolverService],
     };
   }
 }

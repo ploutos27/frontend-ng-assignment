@@ -5,19 +5,19 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ProfileService } from './profile.service';
-
+import { SharedService } from './shared.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProfileResolverService implements Resolve<Observable<any>> {
-  constructor(private readonly service: ProfileService) {}
+
+export class SharedResolverService implements Resolve<Observable<any>> {
+  constructor(private readonly service: SharedService) {}
 
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<Observable<any>> | Promise<Observable<any>> | Observable<any> {
-    return this.service.load();
+    return this.service.me();
   }
 }

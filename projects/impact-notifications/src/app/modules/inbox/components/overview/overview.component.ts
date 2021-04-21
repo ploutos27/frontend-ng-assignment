@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { SentMessageDialog } from '../../../shared/components';
+import { IUser } from '../../../shared/interfaces/user.interface';
 import { IInbox } from '../../interfaces/inbox.interface';
 import { InboxService } from '../../services/inbox.service';
 
@@ -10,14 +12,19 @@ import { InboxService } from '../../services/inbox.service';
   selector: 'root-inbox-overview',
   templateUrl: './overview.component.html',
 })
-export class OverviewComponent implements OnInit {
+export class OverviewComponent {
+  
+  get user(): IUser {
+    return this.route.snapshot.data.user;
+  }
+
   constructor(
     private readonly toastr: ToastrService,
     private readonly service: InboxService,
     public dialog: MatDialog,
+    private readonly route: ActivatedRoute,
     private readonly translate: TranslateService
   ) {}
-  ngOnInit(): void {}
 
   compose() {
     const dialogRef = this.dialog.open(SentMessageDialog, {
@@ -30,7 +37,7 @@ export class OverviewComponent implements OnInit {
 
   private sentMessage(x: IInbox) {
     const msg: IInbox = {
-      from: this.service.me().userDetails.email,
+      from: this.user.userDetails.email,
       to: x.to,
       subject: x.subject,
       message: x.message,

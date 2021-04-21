@@ -21,7 +21,8 @@
         "from": "From",
         "subject": "Subject",
         "date": "Date",
-        "compose": "Compose"
+        "compose": "Compose",
+        "to": "To"
     },
     "dialog": {
         "title_delete": "Confirm Deletion",
@@ -84,14 +85,26 @@
             "login": "Email or password is not match.",
             "messageNotSend": "Your message is not delivered.",
             "userNotUpdated": "Your profile has not been updated.",
-            "userPwdNotChange": "Your password has not been changed."
+            "userPwdNotChange": "Your password has not been changed.",
+            "messageNotDelete": "Message has not been deleted.",
+            "nothingFound": "No data found"
         },
         "success": {
             "title": "Success.",
             "user_register": "User registered successfully.",
             "messageSend":"Your message successfully sent.",
             "userUpdated": "Your profile updated successfully.",
-            "userPwdChange": "Your password has been changed successfully."
+            "userPwdChange": "Your password has been changed successfully.",
+            "messageDelete": "Message successfully deleted."
         }
+    },
+    "dashboard": {
+        "total_messages_send": "Total Distribution Messages",
+        "latest_messages": "Latest Messages",
+        "frequent_users":"Frequent Users",
+        "charts_statistics": "Statistics",
+        "charts_messages": "Messages",
+        "charts_send": "Total Inbox",
+        "charts_received": "Total Outbox"
     }
 }

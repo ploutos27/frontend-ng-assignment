@@ -1,1 +1,16 @@
-dashboard overview
+
+
+
+
+<div fxLayout="row" fxLayout='column'>
+    <root-dashboard-charts fxFlex="100" [user]="user"></root-dashboard-charts>
+</div>
+
+<div class="spacer"></div>
+
+<div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between" fxLayout.sm="column" fxLayout.xs="column">
+  <root-dashboard-latest-messages fxFlex="50" [user]="user">
+  </root-dashboard-latest-messages>
+  <root-dashboard-frequent-users fxFlex="50" [user]="user">
+  </root-dashboard-frequent-users>
+</div>

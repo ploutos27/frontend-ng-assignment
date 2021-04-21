@@ -21,7 +21,8 @@
         "from": "Από",
         "subject": "Θέμα",
         "date": "Ημερομηνία",
-        "compose": "Compose"
+        "compose": "Compose",
+        "to": "Προς"
     },
     "dialog": {
         "title_delete": "Επιβεβαίωση διαγραφής",
@@ -77,14 +78,26 @@
             "login": "Το email ή ο κωδικός πρόσβασης δεν ταιριάζουν.",
             "messageNotSend": "Το μήνυμά σας δεν παραδόθηκε.",
             "userNotUpdated": "Το προφίλ σας δεν ενημερώθηκε.",
-            "userPwdNotChange": "Ο κωδικός πρόσβασής σας δεν έχει αλλάξει."
+            "userPwdNotChange": "Ο κωδικός πρόσβασής σας δεν έχει αλλάξει.",
+            "messageNotDelete": "Το μήνυμα δεν έχει διαγραφεί.",
+            "nothingFound": "Δεν βρέθηκαν δεδομένα"
         },
         "success": {
             "title": "Επιτυχία.",
             "user_register": "Ο χρήστης εγγράφηκε με επιτυχία.",
             "messageSend": "Τα μηνύματά σας στάλθηκε με επιτυχία.",
             "userUpdated": "Το προφίλ σας ενημερώθηκε με επιτυχία.",
-            "userPwdChange": "Ο κωδικός πρόσβασής σας άλλαξε με επιτυχία."
+            "userPwdChange": "Ο κωδικός πρόσβασής σας άλλαξε με επιτυχία.",
+            "messageDelete": "Το μήνυμα διαγράφηκε με επιτυχία."
         }
+    },
+    "dashboard": {
+        "total_messages_send": "Συνολικά Μηνύματα Διανομής",
+        "latest_messages": "Τελευταία μηνύματα",
+        "frequent_users":"Συχνότεροι Χρήστες",
+        "charts_statistics": "Στατιστική",
+        "charts_messages": "Μηνύματα",
+        "charts_send": "Σύνολο Απεσταλμενων",
+        "charts_received": "Σύνολο Εισερχόμενων"
     }
 }
