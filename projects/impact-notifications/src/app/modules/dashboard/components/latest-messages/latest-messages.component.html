@@ -3,7 +3,7 @@
     <mat-card-title>{{ 'dashboard.latest_messages' | translate }}</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <ng-template [ngIf]="(dataSource$ | async).length > 0" [ngIfElse]="nothingFound">
+    <ng-template [ngIf]="(dataSource$ | async).length" [ngIfElse]="nothingFound">
          <table mat-table [dataSource]="dataSource$ | async">
            <ng-container matColumnDef="from">
              <th mat-header-cell *matHeaderCellDef>{{ 'inbox.from' | translate }}</th>

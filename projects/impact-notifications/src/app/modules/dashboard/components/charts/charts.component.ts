@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IUser } from '../../../shared/interfaces/user.interface';
 import { DashboardService } from '../../services/dashboard.service';
@@ -30,7 +30,7 @@ export class ChartsComponent implements OnInit {
   xAxisLabel = this.translate.instant('dashboard.charts_statistics');
   showYAxisLabel = true;
   yAxisLabel = this.translate.instant('dashboard.charts_messages');
-  view: any[] = [600, 400];
+  view: any[];
 
   colorScheme = {
     domain: ['#5AA454', '#C7B42C'],
@@ -39,11 +39,17 @@ export class ChartsComponent implements OnInit {
   constructor(
     private readonly service: DashboardService,
     private readonly translate: TranslateService
-  ) {}
+  ) {
+     this.view = [window.innerWidth / 3, 400];
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.view = [event.target.innerWidth / 3.5, 400];
+  }
 
   ngOnInit(): void {
-    
-    this.translate.onLangChange.subscribe(res => {
+    this.translate.onLangChange.subscribe((res) => {
       this.yAxisLabel = res.translations.dashboard.charts_messages;
       this.xAxisLabel = res.translations.dashboard.charts_statistics;
     });
@@ -51,8 +57,8 @@ export class ChartsComponent implements OnInit {
     this.service
       .receivedSendMessages(this.user.userDetails.email)
       .subscribe((res: { send: number; received: number }) => {
-        this.single[0].value = res.send;
-        this.single[1].value = res.received;
+        this.single[1].value = res.send;
+        this.single[0].value = res.received;
       });
   }
 }

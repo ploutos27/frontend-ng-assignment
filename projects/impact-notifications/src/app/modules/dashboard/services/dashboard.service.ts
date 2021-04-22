@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class DashboardService {
+
   constructor(private readonly http: HttpClient) {}
 
   latestMessages(email: string, take: string) {
@@ -15,10 +16,18 @@ export class DashboardService {
   }
 
   receivedSendMessages(email: string) {
-     return this.http.get('/receivedSendMessages', {
-       params: {
-         email
-       },
-     });
+    return this.http.get('/receivedSendMessages', {
+      params: {
+        email,
+      },
+    });
+  }
+
+  mostFrequestUsers(email: string) {
+    return this.http.get('/mostFrequestUsers', {
+      params: {
+        email,
+      },
+    });
   }
 }

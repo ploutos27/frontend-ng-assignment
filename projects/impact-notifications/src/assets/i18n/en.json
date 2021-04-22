@@ -105,6 +105,9 @@
         "charts_statistics": "Statistics",
         "charts_messages": "Messages",
         "charts_send": "Total Inbox",
-        "charts_received": "Total Outbox"
+        "charts_received": "Total Outbox",
+        "frequent_user": "User",
+        "frequent_send": "Send",
+        "frequent_received": "Received"
     }
 }

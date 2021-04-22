@@ -17,7 +17,7 @@ export class LayoutComponent implements OnInit{
   }
 
   private checkScreenSize(innerWidth: number) {
-    if(innerWidth < 600) {
+    if(innerWidth < 800) {
       this.open = false;
     } else {
       this.open = true;
