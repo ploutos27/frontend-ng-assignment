@@ -10,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { LoginRegisterService } from '../../../services/auth.service';
 
 @Component({
-  selector: 'auth-registration',
+  selector: 'imp-auth-registration',
   templateUrl: './registration.component.html',
 })
 

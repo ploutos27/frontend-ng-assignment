@@ -1,23 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
-import { SentMessageDialog } from '../../../shared/components';
+import { SentMessageDialogComponent } from '../../../shared/components';
 import { IUser } from '../../../shared/interfaces/user.interface';
 import { IInbox } from '../../interfaces/inbox.interface';
 import { InboxService } from '../../services/inbox.service';
 
 @Component({
-  selector: 'root-inbox-overview',
+  selector: 'app-root-inbox-overview',
   templateUrl: './overview.component.html',
 })
 export class OverviewComponent {
-  
   get user(): IUser {
     return this.route.snapshot.data.user;
   }
-
   constructor(
     private readonly toastr: ToastrService,
     private readonly service: InboxService,
@@ -27,11 +25,13 @@ export class OverviewComponent {
   ) {}
 
   compose() {
-    const dialogRef = this.dialog.open(SentMessageDialog, {
+    const dialogRef = this.dialog.open(SentMessageDialogComponent, {
       width: '600px',
     });
     dialogRef.afterClosed().subscribe((x) => {
-      if (x !== undefined && x !== false) this.sentMessage(x);
+      if (x !== undefined && x !== false) {
+        this.sentMessage(x);
+      }
     });
   }
 

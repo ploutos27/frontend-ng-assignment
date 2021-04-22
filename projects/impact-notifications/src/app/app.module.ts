@@ -10,7 +10,7 @@ import { environment } from '../environments/environment';
   declarations: [AppComponent],
   imports: [
     AppRoutingModule,
-    NgxsModule.forRoot([], { developmentMode: !environment.production }),
+    NgxsModule.forRoot([], { developmentMode: !environment.production }), // needs to be init for auth
     AuthModule.forRoot(),
     ApiModule,
     SharedModule.forRoot(),

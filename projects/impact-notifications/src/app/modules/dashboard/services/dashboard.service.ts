@@ -1,33 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Methods } from '../../shared/services/methods';
 
 @Injectable()
-export class DashboardService {
-
-  constructor(private readonly http: HttpClient) {}
+export class DashboardService extends Methods {
+  constructor(http: HttpClient) {
+    super(http);
+  }
 
   latestMessages(email: string, take: string) {
-    return this.http.get('/latestMessages', {
-      params: {
-        email,
-        take,
-      },
+    return this.get({
+      params: { email, take },
+      url: '/latestMessages',
     });
   }
 
   receivedSendMessages(email: string) {
-    return this.http.get('/receivedSendMessages', {
-      params: {
-        email,
-      },
+    return this.get({
+      params: { email },
+      url: '/receivedSendMessages',
     });
   }
 
   mostFrequestUsers(email: string) {
-    return this.http.get('/mostFrequestUsers', {
-      params: {
-        email,
-      },
+    return this.get({
+      params: { email },
+      url: '/mostFrequestUsers',
     });
   }
 }

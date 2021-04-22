@@ -1,7 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'root-app-layout',
+  selector: 'app-root-app-layout',
   templateUrl: './layout.component.html',
 })
 export class LayoutComponent implements OnInit{
@@ -17,7 +17,7 @@ export class LayoutComponent implements OnInit{
   }
 
   private checkScreenSize(innerWidth: number) {
-    if(innerWidth < 800) {
+    if (innerWidth < 800) {
       this.open = false;
     } else {
       this.open = true;

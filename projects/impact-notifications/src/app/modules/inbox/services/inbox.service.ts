@@ -1,24 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IInbox } from '../interfaces/inbox.interface';
+import { Methods } from '../../shared/services/methods';
 
 @Injectable()
-export class InboxService {
-  constructor(private readonly http: HttpClient) {}
+export class InboxService extends Methods {
+  constructor(http: HttpClient) {
+    super(http);
+  }
 
   inbox(email: string) {
-    return this.http.get<IInbox[]>('/notifications', {
-      params: {
-        email
-      },
-    });
+    return this.get<IInbox[]>({ params: { email }, url: '/notifications' });
   }
 
   create(message: IInbox) {
-    return this.http.post('/sendNotification', message);
+    return this.post({ body: { message }, url: '/sendNotification' });
   }
 
   delete(message: IInbox, email: string) {
-    return this.http.post('/deleteNotification', {message, email});
+    return this.post({ body: { message, email }, url: '/deleteNotification' });
   }
 }

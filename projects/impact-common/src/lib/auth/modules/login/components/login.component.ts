@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'auth-login',
+  selector: 'imp-auth-login',
   templateUrl: './login.component.html',
 })
 export class LoginComponent {

@@ -1,12 +1,11 @@
 <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center stretch" fxLayout.sm="column"
   fxLayout.xs="column">
-    <root-dashboard-charts fxFlex="50" [user]="user"></root-dashboard-charts>
-    <root-dashboard-frequent-users fxFlex="50" [user]="user"></root-dashboard-frequent-users>
+    <app-root-dashboard-charts fxFlex="50" [user]="user"></app-root-dashboard-charts>
+    <app-root-dashboard-frequent-users fxFlex="50" [user]="user"></app-root-dashboard-frequent-users>
 </div>
-
 
 <div class="spacer"></div>
 
 <div fxLayout="row">
-  <root-dashboard-latest-messages fxFlex="100" [user]="user"></root-dashboard-latest-messages>
+  <app-root-dashboard-latest-messages fxFlex="100" [user]="user"></app-root-dashboard-latest-messages>
 </div>

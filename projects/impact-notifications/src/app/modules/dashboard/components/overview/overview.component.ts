@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DashboardService } from '../../services/dashboard.service';
 
 @Component({
-  selector: 'root-dashboard-overview',
+  selector: 'app-root-dashboard-overview',
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss'],
 })

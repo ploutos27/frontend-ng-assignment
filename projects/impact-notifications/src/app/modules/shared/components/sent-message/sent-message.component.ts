@@ -7,12 +7,11 @@ import { IInbox } from '../../../inbox/interfaces/inbox.interface';
 import { SharedService } from '../../services/shared.service';
 
 @Component({
-  selector: 'app-root-sent-message',
+  selector: 'app-root-sent-message-dialog',
   templateUrl: './sent-message.component.html',
   styles: ['.mat-dialog-actions {justify-content: flex-end;}'],
 })
-
-export class SentMessageDialog {
+export class SentMessageDialogComponent {
   form = new FormGroup({});
   options: FormlyFormOptions = {};
   model: IInbox = {
@@ -70,6 +69,6 @@ export class SentMessageDialog {
 
   constructor(
     private shared: SharedService,
-    public dialogRef: MatDialogRef<SentMessageDialog>
+    public dialogRef: MatDialogRef<SentMessageDialogComponent>
   ) {}
 }

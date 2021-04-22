@@ -1,4 +1,4 @@
-import { IUser } from "../interfaces/auth.interface";
+import { IUser } from '../interfaces/auth.interface';
 
 export class SetUserAuth {
   static readonly type = '[Auth] Set User Auth';

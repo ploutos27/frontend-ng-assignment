@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, NgxsOnInit, State, StateContext } from '@ngxs/store';
 import { map, tap } from 'rxjs/operators';
-import { forkJoin, of } from 'rxjs';
+import { of } from 'rxjs';
 import { SetUserAuth, RemoveUserAuth } from './auth.actions';
 import { IUser } from '../interfaces/auth.interface';
 import { ApiTokenService } from '../services/api-token.service';
@@ -43,7 +43,6 @@ export class AuthState implements NgxsOnInit {
 
   /**
    * Will be called once during module initialization
-   * @param ctx
    */
   ngxsOnInit(ctx?: StateContext<IUser>): any {
     this._getCurrentUser().subscribe((res: IUser) => {
@@ -56,8 +55,6 @@ export class AuthState implements NgxsOnInit {
 
   /**
    * Sets current User
-   * @param ctx
-   * @param action
    */
   @Action(SetUserAuth)
   setCurrentApiToken(ctx: StateContext<IUser>, action: SetUserAuth) {
@@ -74,8 +71,6 @@ export class AuthState implements NgxsOnInit {
 
   /**
    * Removes current User, use in case of logout
-   * @param ctx
-   * @param action
    */
   @Action(RemoveUserAuth)
   removeCurrentApiToken(ctx: StateContext<IUser>, action: RemoveUserAuth) {

@@ -6,6 +6,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { FormlyModule } from '@ngx-formly/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { createTranslateLoader, TranslationModule } from '@impactech/common/src/public-api';
 // Material
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -16,10 +19,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 // Components
 import { HeaderComponent, LayoutComponent, SidebarComponent,
-ConfirmationDialog, ViewMessageDialog, SentMessageDialog } from './components';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { createTranslateLoader, TranslationModule } from '@impactech/common/src/public-api';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+ConfirmationDialogComponent, ViewMessageDialogComponent, SentMessageDialogComponent } from './components';
+// Services
 import { SharedService } from './services/shared.service';
 import { SharedResolverService } from './services/shared.resolver';
 
@@ -28,9 +29,9 @@ import { SharedResolverService } from './services/shared.resolver';
     HeaderComponent,
     LayoutComponent,
     SidebarComponent,
-    ConfirmationDialog,
-    ViewMessageDialog,
-    SentMessageDialog,
+    ConfirmationDialogComponent,
+    ViewMessageDialogComponent,
+    SentMessageDialogComponent,
   ],
   imports: [
     CommonModule,

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { IInbox } from '../../interfaces/inbox.interface';
-import { ConfirmationDialog, ViewMessageDialog } from '../../../shared/components';
+import {
+  ConfirmationDialogComponent,
+  ViewMessageDialogComponent,
+} from '../../../shared/components';
 import { ActivatedRoute } from '@angular/router';
 import { InboxService } from '../../services/inbox.service';
 import { Observable } from 'rxjs';
@@ -10,18 +13,15 @@ import { TranslateService } from '@ngx-translate/core';
 import { IUser } from '../../../shared/interfaces/user.interface';
 
 @Component({
-  selector: 'root-inbox-inbox',
+  selector: 'app-root-inbox-inbox',
   templateUrl: './inbox.component.html',
 })
 export class InboxComponent implements OnInit {
-  
   get user(): IUser {
     return this.route.snapshot.data.user;
   }
-
   displayedColumns: string[] = ['from', 'subject', 'date', 'star'];
   dataSource$: Observable<IInbox[]>;
-
   constructor(
     private readonly route: ActivatedRoute,
     public dialog: MatDialog,
@@ -39,18 +39,20 @@ export class InboxComponent implements OnInit {
   }
 
   viewMessage(element: IInbox) {
-    const dialogRef = this.dialog.open(ViewMessageDialog, {
+    const dialogRef = this.dialog.open(ViewMessageDialogComponent, {
       width: '600px',
       data: element,
     });
   }
 
   confirmDelete(element: IInbox) {
-    const dialogRef = this.dialog.open(ConfirmationDialog, {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '450px',
     });
     dialogRef.afterClosed().subscribe((x) => {
-      if (x !== undefined && x === true) this.messageDeletion(element);
+      if (x !== undefined && x === true) {
+        this.messageDeletion(element);
+      }
     });
   }
 
@@ -74,6 +76,3 @@ export class InboxComponent implements OnInit {
     );
   }
 }
-
-
-

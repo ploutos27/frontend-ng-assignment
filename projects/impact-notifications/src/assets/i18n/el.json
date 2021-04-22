@@ -98,6 +98,9 @@
         "charts_statistics": "Στατιστική",
         "charts_messages": "Μηνύματα",
         "charts_send": "Σύνολο Απεσταλμενων",
-        "charts_received": "Σύνολο Εισερχόμενων"
+        "charts_received": "Σύνολο Εισερχόμενων",
+        "frequent_user": "Χρήστης",
+        "frequent_send": "Αποστάλθηκαν",
+        "frequent_received": "Λήφθηκαν"
     }
 }

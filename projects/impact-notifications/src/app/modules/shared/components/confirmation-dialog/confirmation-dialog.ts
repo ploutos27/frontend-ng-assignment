@@ -6,6 +6,6 @@ import { MatDialogRef } from '@angular/material/dialog';
   templateUrl: 'confirmation-dialog.html',
   styles: ['.mat-dialog-actions {justify-content: flex-end;}'],
 })
-export class ConfirmationDialog {
-  constructor(public dialogRef: MatDialogRef<ConfirmationDialog>) {}
+export class ConfirmationDialogComponent {
+  constructor(public dialogRef: MatDialogRef<ConfirmationDialogComponent>) {}
 }

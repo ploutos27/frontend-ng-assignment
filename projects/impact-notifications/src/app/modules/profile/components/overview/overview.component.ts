@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IUser } from '../../../shared/interfaces/user.interface';
 
 @Component({
-  selector: 'root-profile-overview',
+  selector: 'app-root-profile-overview',
   templateUrl: './overview.component.html',
 })
 export class OverviewComponent {

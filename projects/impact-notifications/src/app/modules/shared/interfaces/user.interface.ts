@@ -1,4 +1,4 @@
-import { IProfile } from "../../profile/interfaces/profile.interface";
+import { IProfile } from '../../profile/interfaces/profile.interface';
 
 export class IUser {
   authenticated: boolean;

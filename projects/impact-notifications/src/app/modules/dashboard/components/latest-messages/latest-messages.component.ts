@@ -2,12 +2,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { IInbox } from '../../../inbox/interfaces/inbox.interface';
-import { ViewMessageDialog } from '../../../shared/components';
+import { ViewMessageDialogComponent } from '../../../shared/components';
 import { IUser } from '../../../shared/interfaces/user.interface';
 import { DashboardService } from '../../services/dashboard.service';
 
 @Component({
-  selector: 'root-dashboard-latest-messages',
+  selector: 'app-root-dashboard-latest-messages',
   templateUrl: './latest-messages.component.html',
 })
 export class LatestMessagesComponent implements OnInit {
@@ -29,7 +29,7 @@ export class LatestMessagesComponent implements OnInit {
   }
 
   viewMessage(element: IInbox) {
-    const dialogRef = this.dialog.open(ViewMessageDialog, {
+    const dialogRef = this.dialog.open(ViewMessageDialogComponent, {
       width: '600px',
       data: element,
     });

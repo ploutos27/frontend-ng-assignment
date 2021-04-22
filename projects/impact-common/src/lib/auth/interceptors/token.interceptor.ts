@@ -20,7 +20,7 @@ export class TokenInterceptor implements HttpInterceptor {
     if (apiToken) {
       const req = request.clone({
         setHeaders: {
-          'auth': 'testTokenBlah', // in our case we cannot sent boolean
+          Authorization: 'testTokenBlah', // in our case we cannot sent boolean
         },
       });
       return next.handle(req);

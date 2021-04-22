@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { AuthGuard } from './guards/auth.guard';
 import { ApiTokenService } from './services/api-token.service';
-import { LoginModule } from './modules/login/login.module';
 import { AuthComponent } from './components/auth-component/auth.component';
 import { AuthLanguageSelectorComponent } from './components/auth-language-selector/language-selector.component';
 import { TranslateModule } from '@ngx-translate/core';
@@ -58,11 +57,8 @@ export class AuthModule {
   static forRoot(): ModuleWithProviders<AuthModule> {
     return {
       ngModule: AuthModule,
-      providers: [
-        ...httpInterceptorProviders, 
-        ApiTokenService, 
-        AuthGuard
-      ],
+      providers: [...httpInterceptorProviders, ApiTokenService, AuthGuard],
     };
   }
 }
+

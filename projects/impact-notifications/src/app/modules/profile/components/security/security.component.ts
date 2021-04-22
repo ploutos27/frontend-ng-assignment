@@ -11,7 +11,7 @@ import { IPassword } from '../../interfaces/profile.interface';
 import { ProfileService } from '../../services/profile.service';
 
 @Component({
-  selector: 'root-profile-security',
+  selector: 'app-root-profile-security',
   templateUrl: './security.component.html',
 })
 
@@ -40,7 +40,7 @@ export class SecurityComponent implements OnInit {
   onSubmit() {
     if (this.form.valid) {
       this.profile
-        .changedPasswrd(this.model, this.user.userDetails.email)
+        .changedPassword(this.model, this.user.userDetails.email)
         .subscribe(
           () => {
             this.toastr.success(

@@ -3,8 +3,7 @@ import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class SharedService {
-  users: { name: string, value: string}[] = [];
-
+  users: { name: string; value: string }[] = [];
 
   me() {
     const user = JSON.parse(localStorage.getItem('currentUser'));
@@ -17,12 +16,13 @@ export class SharedService {
 
   structure() {
     this.users = [];
-      const users = JSON.parse(localStorage.getItem('registered-users'));
-      const me = JSON.parse(localStorage.getItem('currentUser'));
-      for (let u of users) {
-          if (u.email !== me.userDetails.email)
-            this.users.push({ name: u.email, value: u.email });
-      };
+    const users = JSON.parse(localStorage.getItem('registered-users'));
+    const me = JSON.parse(localStorage.getItem('currentUser'));
+    for (const u of users) {
+      if (u.email !== me.userDetails.email) {
+        this.users.push({ name: u.email, value: u.email });
+      }
+    }
     return this.users;
   }
 }

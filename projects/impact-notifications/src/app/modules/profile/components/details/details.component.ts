@@ -9,10 +9,9 @@ import { IProfile } from '../../interfaces/profile.interface';
 import { ProfileService } from '../../services/profile.service';
 
 @Component({
-  selector: 'root-profile-details',
+  selector: 'app-root-profile-details',
   templateUrl: './details.component.html',
 })
-
 export class DetailsComponent implements OnInit {
   @Input() user: IUser;
   form = new FormGroup({});
@@ -25,7 +24,7 @@ export class DetailsComponent implements OnInit {
     private readonly translate: TranslateService,
     private readonly profile: ProfileService
   ) {}
-  
+
   ngOnInit(): void {
     this.model = {
       fname: this.user.userDetails.fname || null,
