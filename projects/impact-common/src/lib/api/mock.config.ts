@@ -1,8 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
-import {
-  sortByDate,
-} from './reusable-functions';
+import { sortByDate } from './reusable-functions';
 
 export default {
   GET: {
@@ -52,32 +50,30 @@ function mostFrequestUsers(params) {
     const user = usersNotifications.find((x) => x.email === email);
     const details = [];
 
-    // Init Inbox
-    for (let i = 0; i < user.inbox.length; i++) {
-      if (details.find((x) => x.email === user.inbox[i].from) !== undefined) {
-        details.find((x) => x.email === user.inbox[i].from).received += 1;
+    // Inbox
+    for (const i of user.inbox) {
+      if (details.find((x) => x.email === i.from) !== undefined) {
+        details.find((x) => x.email === i.from).received += 1;
       } else {
         details.push({
-          email: user.inbox[i].from,
+          email: i.from,
           send: 0,
           received: 1,
         });
       }
     }
-
-    // Init Outbox
-    for (let j = 0; j < user.outbox.length; j++) {
-      if (details.find((x) => x.email === user.outbox[j].to) !== undefined) {
-        details.find((x) => x.email === user.outbox[j].to).send += 1;
+    // Outbox
+    for (const i of user.outbox) {
+      if (details.find((x) => x.email === i.to) !== undefined) {
+        details.find((x) => x.email === i.to).send += 1;
       } else {
         details.push({
-          email: user.outbox[j].to,
+          email: i.to,
           send: 1,
           received: 0,
         });
       }
     }
-
     return of(
       new HttpResponse({
         status: 200,
@@ -237,7 +233,9 @@ function deleteNotifications(body) {
   const notifications = localStorage.getItem('users-notifications');
   if (notifications !== null) {
     const usersNotifications = JSON.parse(notifications);
-    const userNotifications = usersNotifications.find((x) => x.email === body.email);
+    const userNotifications = usersNotifications.find(
+      (x) => x.email === body.email
+    );
     if (userNotifications.inbox.length > -1) {
       // user notifications if have something to delete
       const modifyUserNotifications = userNotifications.notifications.filter(
