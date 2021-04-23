@@ -1,9 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import {
-  findMostFrequest,
   sortByDate,
-  findEmailSendReceived,
 } from './reusable-functions';
 
 export default {
@@ -51,17 +49,43 @@ function mostFrequestUsers(params) {
   const notifications = localStorage.getItem('users-notifications');
   if (notifications != null) {
     const usersNotifications = JSON.parse(notifications);
-    const userNotifications = usersNotifications.find((x) => x.email === email);
-    if (userNotifications !== undefined) {
-      const tempArr = findMostFrequest(userNotifications.notifications);
-      const results = findEmailSendReceived(tempArr, email);
-      return of(
-        new HttpResponse({
-          status: 200,
-          body: results,
-        })
-      );
+    const user = usersNotifications.find((x) => x.email === email);
+    const details = [];
+
+    // Init Inbox
+    for (let i = 0; i < user.inbox.length; i++) {
+      if (details.find((x) => x.email === user.inbox[i].from) !== undefined) {
+        details.find((x) => x.email === user.inbox[i].from).received += 1;
+      } else {
+        details.push({
+          email: user.inbox[i].from,
+          send: 0,
+          received: 1,
+        });
+      }
     }
+
+    // Init Outbox
+    for (let j = 0; j < user.outbox.length; j++) {
+      if (details.find((x) => x.email === user.outbox[j].to) !== undefined) {
+        details.find((x) => x.email === user.outbox[j].to).send += 1;
+      } else {
+        details.push({
+          email: user.outbox[j].to,
+          send: 1,
+          received: 0,
+        });
+      }
+    }
+
+    return of(
+      new HttpResponse({
+        status: 200,
+        body: details.sort(
+          (a, b) => b.send + b.received - (a.send + b.received)
+        ), // sort by the sum of send/received
+      })
+    );
   }
   return of(
     new HttpResponse({
@@ -81,19 +105,13 @@ function receivedSendMessages(params) {
     const usersNotifications = JSON.parse(notifications);
     const userNotifications = usersNotifications.find((x) => x.email === email);
     if (userNotifications !== undefined) {
-      const received = userNotifications.notifications.length;
-      const send = usersNotifications.map((x) => {
-        return x.notifications.filter((j) => {
-          return j.from === email;
-        });
-      }); // mapping notifications and filtering notifications send from requested email
-      const merged = [].concat.apply([], send); // we end up having an array of arrays,
-      //  we use concat to merged and apply to pass (this) value (ie: array) and the target arr
+      const received = userNotifications.inbox.length;
+      const send = userNotifications.outbox.length;
       return of(
         new HttpResponse({
           status: 200,
           body: {
-            send: merged.length,
+            send,
             received,
           },
         })
@@ -125,7 +143,7 @@ function latestMessages(params) {
     );
 
     if (userNotifications !== undefined) {
-      const latest = sortByDate(userNotifications.notifications);
+      const latest = sortByDate(userNotifications.inbox);
       return of(
         new HttpResponse({
           status: 200,
@@ -156,7 +174,7 @@ function getNotifications(params) {
       return of(
         new HttpResponse({
           status: 200,
-          body: sortByDate(userNotifications[index].notifications),
+          body: sortByDate(userNotifications[index].inbox),
         })
       );
     }
@@ -175,49 +193,31 @@ function getNotifications(params) {
  */
 function sendNotifications(params) {
   const notifications = localStorage.getItem('users-notifications');
-  if (notifications != null) {
+  if (notifications !== null) {
     const userNotifications = JSON.parse(notifications);
-    const index = userNotifications.findIndex((x) => x.email === params.to);
-    if (index > -1) {
-      const p = params;
-      p.date = Date.now(); // date is always generated from server or db
-      userNotifications[index].notifications.push(p);
-    } else {
-      userNotifications.push({
-        email: params.to,
-        notifications: [
-          {
-            from: params.from,
-            subject: params.subject,
-            message: params.message,
-            date: Date.now(),
-          },
-        ],
-      });
-    }
-    localStorage.setItem(
-      'users-notifications',
-      JSON.stringify(userNotifications)
-    );
-  } else {
-    localStorage.setItem(
-      'users-notifications',
-      JSON.stringify([
-        {
-          email: params.to,
-          notifications: [
-            {
-              from: params.from,
-              subject: params.subject,
-              message: params.message,
-              date: Date.now(),
-            },
-          ],
-        },
-      ])
-    );
-  }
+    const indexTo = userNotifications.findIndex(
+      (x) => x.email === params.message.to
+    ); // TO
+    const indeFrom = userNotifications.findIndex(
+      (x) => x.email === params.message.from
+    ); // FROM
 
+    if (indexTo > -1 && indeFrom > -1) {
+      const p = {
+        from: params.message.from,
+        message: params.message.message,
+        subject: params.message.subject,
+        to: params.message.to,
+        date: Date.now(),
+      };
+      userNotifications[indexTo].inbox.push(p);
+      userNotifications[indeFrom].outbox.push(p);
+      localStorage.setItem(
+        'users-notifications',
+        JSON.stringify(userNotifications)
+      );
+    }
+  }
   return of(
     new HttpResponse({
       status: 200,
@@ -237,10 +237,8 @@ function deleteNotifications(body) {
   const notifications = localStorage.getItem('users-notifications');
   if (notifications !== null) {
     const usersNotifications = JSON.parse(notifications);
-    const userNotifications = usersNotifications.find(
-      (x) => x.email === body.email
-    );
-    if (userNotifications.notifications.length > -1) {
+    const userNotifications = usersNotifications.find((x) => x.email === body.email);
+    if (userNotifications.inbox.length > -1) {
       // user notifications if have something to delete
       const modifyUserNotifications = userNotifications.notifications.filter(
         (x) => {
@@ -248,7 +246,7 @@ function deleteNotifications(body) {
         }
       );
       // I've use date as id for deleting the notification, usually we use a unique id
-      userNotifications.notifications = modifyUserNotifications;
+      userNotifications.inbox = modifyUserNotifications;
       const modifyUsersNotifications = JSON.stringify(usersNotifications);
       localStorage.setItem('users-notifications', modifyUsersNotifications);
       return of(
@@ -278,16 +276,21 @@ function deleteNotifications(body) {
  * @returns REGISTER USER
  */
 function register(body) {
-  const registeredUseres = localStorage.getItem('registered-users');
+  const registeredUsers = localStorage.getItem('registered-users');
   const notifications = localStorage.getItem('users-notifications');
-  if (registeredUseres !== null && notifications !== null) {
-    const users = JSON.parse(registeredUseres);
+  const details = {
+    email: body.email,
+    inbox: [],
+    outbox: [],
+  };
+
+  if (registeredUsers !== null && notifications !== null) {
+    const users = JSON.parse(registeredUsers);
     const existing = JSON.parse(notifications);
     if (users.findIndex((x) => x.email === body.email) === -1) {
-      const notes = { email: body.email, notifications: [] };
       // check if user exist
       users.push(body);
-      existing.push(notes);
+      existing.push(details);
       localStorage.setItem('registered-users', JSON.stringify(users));
       localStorage.setItem('users-notifications', JSON.stringify(existing));
       return of(
@@ -312,10 +315,7 @@ function register(body) {
     }
   } else {
     localStorage.setItem('registered-users', JSON.stringify([body]));
-    localStorage.setItem(
-      'users-notifications',
-      JSON.stringify([{ email: body.email, notifications: [] }])
-    );
+    localStorage.setItem('users-notifications', JSON.stringify([details]));
     return of(
       new HttpResponse({
         status: 200,
@@ -335,7 +335,7 @@ function register(body) {
 function login(body) {
   let isAuthenticated = false;
   let userDetails: any = {};
-  if (localStorage.getItem('registered-users') != null) {
+  if (localStorage.getItem('registered-users') !== null) {
     const users = JSON.parse(localStorage.getItem('registered-users'));
     const index = users.findIndex(
       (x) => x.email === body.email && x.password === body.password
