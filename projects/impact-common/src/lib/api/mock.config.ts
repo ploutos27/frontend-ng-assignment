@@ -108,12 +108,12 @@ function receivedSendMessages(params) {
     const userNotifications = usersNotifications.find((x) => x.email === email);
     if (userNotifications !== undefined) {
       const received = userNotifications.inbox.length;
-      const send = userNotifications.outbox.length;
+      const sent = userNotifications.outbox.length;
       return of(
         new HttpResponse({
           status: 200,
           body: {
-            send,
+            send: sent,
             received,
           },
         })
