@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { LayoutComponent } from '../shared/components/layout/layout.component';
 import { RouterModule, Routes } from '@angular/router';
-import { OverviewComponent, InboxComponent } from './components';
+import { OverviewComponent, InboxComponent, OutboxComponent } from './components';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -26,7 +26,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [OverviewComponent, InboxComponent],
+  declarations: [OverviewComponent, InboxComponent, OutboxComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

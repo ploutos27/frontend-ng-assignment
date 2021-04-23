@@ -2,8 +2,10 @@
   <mat-tab label="{{ 'inbox.inbox' | translate }}">
    <app-root-inbox-inbox></app-root-inbox-inbox>
   </mat-tab>
+  <mat-tab label="{{ 'inbox.outbox' | translate }}">
+    <app-root-inbox-outbox></app-root-inbox-outbox>
+  </mat-tab>
 </mat-tab-group>
-
 <button mat-raised-button color="primary" class="fixed" (click)="compose()">
   <mat-icon>add</mat-icon>
   {{ 'inbox.compose' | translate }}

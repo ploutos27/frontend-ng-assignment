@@ -4,8 +4,11 @@ import { sortByDate } from './reusable-functions';
 
 export default {
   GET: {
-    '/notifications': {
-      handler: getNotifications,
+    '/inbox': {
+      handler: getInboxOutbox,
+    },
+    '/outbox': {
+      handler: getInboxOutbox,
     },
     '/latestMessages': {
       handler: latestMessages,
@@ -24,8 +27,8 @@ export default {
     '/register': {
       handler: register,
     },
-    '/sendNotification': {
-      handler: sendNotifications,
+    '/send': {
+      handler: send,
     },
     '/updateProfile': {
       handler: updateProfile,
@@ -33,8 +36,11 @@ export default {
     '/changePassword': {
       handler: changePassword,
     },
-    '/deleteNotification': {
-      handler: deleteNotifications,
+    '/inbox': {
+      handler: deleteInboxOutbox,
+    },
+    '/outbox': {
+      handler: deleteInboxOutbox,
     },
   },
 };
@@ -158,10 +164,11 @@ function latestMessages(params) {
 }
 
 /**
- * @returns GET NOTIFICATIONS BY EMAIL
+ * @returns GET INBOX BY EMAIL
  */
-function getNotifications(params) {
+function getInboxOutbox(params) {
   const email = params.get('email');
+  const type = params.get('type'); // get the type of request, e.g inbox/outbox
   const notifications = localStorage.getItem('users-notifications');
   if (notifications != null) {
     const userNotifications = JSON.parse(notifications);
@@ -170,7 +177,7 @@ function getNotifications(params) {
       return of(
         new HttpResponse({
           status: 200,
-          body: sortByDate(userNotifications[index].inbox),
+          body: sortByDate(userNotifications[index][type]),
         })
       );
     }
@@ -184,10 +191,9 @@ function getNotifications(params) {
 }
 
 /**
- *
- * @returns SEND NOTIFICATION TO USER
+ * @returns SEND MESSAGE TO USER
  */
-function sendNotifications(params) {
+function send(params) {
   const notifications = localStorage.getItem('users-notifications');
   if (notifications !== null) {
     const userNotifications = JSON.parse(notifications);
@@ -227,24 +233,22 @@ function sendNotifications(params) {
 
 /**
  *
- * @returns DELETE NOTIFICATION FROM USER
+ * @returns DELETE MESSAGE FROM USER
  */
-function deleteNotifications(body) {
+function deleteInboxOutbox(body) {
   const notifications = localStorage.getItem('users-notifications');
   if (notifications !== null) {
     const usersNotifications = JSON.parse(notifications);
-    const userNotifications = usersNotifications.find(
-      (x) => x.email === body.email
-    );
-    if (userNotifications.inbox.length > -1) {
-      // user notifications if have something to delete
-      const modifyUserNotifications = userNotifications.notifications.filter(
-        (x) => {
-          return x.date !== body.message.date;
-        }
-      );
+    const userNotifications = usersNotifications.find((x) => x.email === body.email);
+    const type = body.type;
+
+    if (userNotifications[type].length > -1) {
+      const modifyUserNotifications = userNotifications[type].filter((x) => {
+        return x.date !== body.message.date;
+      });
+
       // I've use date as id for deleting the notification, usually we use a unique id
-      userNotifications.inbox = modifyUserNotifications;
+      userNotifications[type] = modifyUserNotifications;
       const modifyUsersNotifications = JSON.stringify(usersNotifications);
       localStorage.setItem('users-notifications', modifyUsersNotifications);
       return of(
@@ -257,6 +261,8 @@ function deleteNotifications(body) {
         })
       );
     }
+
+
   }
   return of(
     new HttpResponse({

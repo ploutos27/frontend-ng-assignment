@@ -22,7 +22,8 @@
         "subject": "Subject",
         "date": "Date",
         "compose": "Compose",
-        "to": "To"
+        "to": "To",
+        "outbox": "Outbox"
     },
     "dialog": {
         "title_delete": "Confirm Deletion",

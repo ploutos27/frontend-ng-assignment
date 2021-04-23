@@ -5,6 +5,7 @@ export interface IGetDashboard {
   params: {
     email: string;
     take?: string;
+    type?: string;
   };
   url: string;
 }
@@ -13,6 +14,7 @@ export interface IPostInbox {
   body: {
     message: IInbox;
     email?: string;
+    type?: string;
   };
   url: string;
 }

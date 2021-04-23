@@ -9,15 +9,21 @@ export class InboxService extends Methods {
     super(http);
   }
 
-  inbox(email: string) {
-    return this.get<IInbox[]>({ params: { email }, url: '/notifications' });
-  }
-
   create(message: IInbox) {
-    return this.post({ body: { message }, url: '/sendNotification' });
+    return this.post({ body: { message }, url: '/send' });
   }
 
-  delete(message: IInbox, email: string) {
-    return this.post({ body: { message, email }, url: '/deleteNotification' });
+  read(email: string, type: string) {
+    return this.get<IInbox[]>({
+      params: { email, type },
+      url: '/' + type,
+    });
+  }
+
+  delete(message: IInbox, email: string, type: string) {
+    return this.post({
+      body: { message, email, type },
+      url: '/' + type,
+    });
   }
 }

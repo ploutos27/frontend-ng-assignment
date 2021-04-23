@@ -22,7 +22,8 @@
         "subject": "Θέμα",
         "date": "Ημερομηνία",
         "compose": "Compose",
-        "to": "Προς"
+        "to": "Προς",
+        "outbox": "Απεσταλμένα"
     },
     "dialog": {
         "title_delete": "Επιβεβαίωση διαγραφής",
